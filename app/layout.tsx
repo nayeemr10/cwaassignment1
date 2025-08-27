@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieRemember from "@/components/CookieRemember";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "CWA A1 – Nayeem Rahman (21943800)",
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     })();
   `;
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning data-theme="light">
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBoot }} />
       </head>
@@ -35,9 +36,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip" href="#main">Skip to main content</a>
         <Header />
         <CookieRemember />
+        <Breadcrumbs />   {/* added */}
         <main id="main" className="container">{children}</main>
         <Footer />
       </body>
     </html>
   );
 }
+
