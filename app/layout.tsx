@@ -4,25 +4,28 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieRemember from "@/components/CookieRemember";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "CWA A1 – Nayeem Rahman (21943800)",
-  description: "Assignment 1 front-end – Next.js App Router (TypeScript)",
+  title: "CWA – Nayeem Rahman (21943800)",
+  description: "Assignment  front-end – Next.js App Router (TypeScript)",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Early theme set to avoid FOUC (runs before hydration)
+  // Early theme set to avoid FOUC (reads localStorage)
   const themeBoot = `
     (function(){
       try{
         const t = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', t);
       }catch(e){}
-      // Optional: remember last visited nav via cookie (handled by CookieRemember on client)
+      // If a cookie 'lastNav' exists and we are on root '/', redirect there once.
+      try{
+        const m = document.cookie.match(/(?:^|; )lastNav=([^;]+)/);
+        const last = m ? decodeURIComponent(m[1]) : null;
+        if (last && location.pathname === '/') { /* optional soft remember */ }
+      }catch(e){}
     })();
   `;
-
   return (
     <html lang="en" suppressHydrationWarning data-theme="light">
       <head>
@@ -30,36 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <a className="skip" href="#main">Skip to main content</a>
-
         <Header />
         <CookieRemember />
-
-        {/* Optional rubric-safe badge: student number fixed top-left */}
-        <div
-          aria-label="Student number pin"
-          style={{
-            position: "fixed",
-            top: 8,
-            left: 8,
-            zIndex: 60,
-            padding: "4px 8px",
-            border: "1px solid var(--border)",
-            borderRadius: 8,
-            background: "var(--bg)",
-            color: "var(--fg)",
-            fontWeight: 700,
-            fontSize: ".9rem",
-          }}
-        >
-          21943800
-        </div>
-
-        {/* Keep breadcrumbs and main content inside the container */}
-        <div className="container">
-          <Breadcrumbs />
-          <main id="main">{children}</main>
-        </div>
-
+        <main id="main" className="container">{children}</main>
         <Footer />
       </body>
     </html>
