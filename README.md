@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# CWA Assignment 1 – Next.js (TypeScript, App Router)
+
+**Student:** Nayeem Rahman  
+**ID:** 21943800
+
 ## Getting Started
 
 First, run the development server:
@@ -13,6 +18,22 @@ pnpm dev
 # or
 bun dev
 ```
+
+**Features implemented (map to rubric)**  
+Show you ticked all boxes.  
+```md
+## Features
+- Header + navigation (hamburger menu)
+- Footer with name, student ID, and date
+- Dark/Light theme toggle
+- Cookies remember last menu tab
+- Breadcrumbs for navigation
+- Tabs page:
+  - Add/rename/remove up to 15 tabs
+  - Content editable
+  - Tabs saved in localStorage
+  - Output generates standalone HTML+JS with inline CSS
+- About page with student info and demo video placeholder
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
