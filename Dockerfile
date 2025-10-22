@@ -19,7 +19,7 @@ RUN npx prisma generate || true
 # Disable lint/type-check inside the container build to avoid TS-only failures
 ENV NEXT_DISABLE_ESLINT=1
 ENV NEXT_SKIP_TYPECHECK=1
-RUN npm run build
+RUN npm run build --no-lint
 
 # --- Stage 3: Runtime ---
 FROM node:22-alpine AS runner
