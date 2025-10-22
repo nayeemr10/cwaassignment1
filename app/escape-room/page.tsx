@@ -76,9 +76,11 @@ export default function EscapeRoom() {
       });
       if (!res.ok) throw new Error("Save failed");
       alert("✅ Output saved to database!");
-    } catch (e: any) {
-      alert("Save error: " + e.message);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      alert("Save error: " + msg);
     }
+
   }
 
   return (
