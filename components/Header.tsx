@@ -10,7 +10,6 @@ const NAV = [
   { href: "/pre-lab", label: "Pre-lab Questions", disabled: true },
   { href: "/escape-room", label: "Escape Room" },
   { href: "/coding-races", label: "Coding Races" },
-  { href: "/court-room", label: "Court Room" },
   { href: "/about", label: "About" },
 ];
 

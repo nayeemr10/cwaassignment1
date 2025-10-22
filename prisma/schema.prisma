@@ -1,0 +1,17 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Output {
+  id        String   @id @default(cuid())
+  kind      String   @default("escape-output")
+  html      String
+  createdAt DateTime @default(now())
+}

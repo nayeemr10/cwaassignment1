@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 import CookieRemember from "@/components/CookieRemember";
 
 export const metadata: Metadata = {
-  title: "CWA A1 – Nayeem Rahman (21943800)",
-  description: "Assignment 1 front-end – Next.js App Router (TypeScript)",
+  title: "CWA – Nayeem Rahman (21943800)",
+  description: "Assignment  front-end – Next.js App Router (TypeScript)",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

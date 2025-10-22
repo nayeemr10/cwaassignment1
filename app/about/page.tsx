@@ -1,3 +1,4 @@
+// about feature commit for A1
 // app/about/page.tsx
 export const dynamic = "force-static"; // simple page
 
