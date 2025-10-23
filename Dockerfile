@@ -27,16 +27,15 @@ WORKDIR /app
 ENV NODE_ENV=production
 RUN apk add --no-cache libc6-compat openssl
 
-# Copy production artifacts
+# Copy prod artifacts
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package*.json ./
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps    /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
-COPY public ./public
-# If you rely on tsconfig/next config at runtime (usually not), copy them too:
-# COPY --from=builder /app/next.config.ts ./
-# COPY --from=builder /app/tsconfig.json ./
+COPY --from=builder /app/public ./public
+# 🔴 Add this line to include DATABASE_URL for Prisma
+COPY --from=builder /app/.env ./.env
 
 EXPOSE 3000
-# Apply migrations if Prisma is present; ignore if not
-CMD sh -c "npx prisma migrate deploy >/dev/null 2>&1 || true; npm start"
+# Apply migrations if present; else push schema; then start
+CMD sh -c "npx prisma migrate deploy || npx prisma db push; npm start"
